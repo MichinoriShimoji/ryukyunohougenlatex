@@ -1,0 +1,44 @@
+% ============================================================
+% XeLaTeX 用テンプレート
+% コンパイル: xelatex → bibtex → xelatex → xelatex
+% ============================================================
+\documentclass[ja=standard,xelatex,11pt,paper=b5j]{bxjsarticle}
+\usepackage{ryukyu-xelatex}
+
+\title{ここにタイトルを入力}
+\author{著者名}
+\date{}
+
+\begin{document}
+\bibliographystyle{jecon}
+\maketitle
+
+% 本文ルール：読点→全角カンマ（，），句点→句点（。），1桁数字→全角
+
+\section{はじめに}
+ここに本文を書く。読点は全角カンマ（，）を使用する\footnote{脚注の例。}。
+
+\section{先行研究}
+先行研究について述べる。
+
+\subsection{国内の研究}
+国内の研究について述べる。
+
+\subsection{海外の研究}
+海外の研究について述べる。
+
+\section{方法}
+研究方法について述べる。
+
+\section{結果}
+結果について述べる。
+
+\section{考察}
+考察を述べる。
+
+\section{おわりに}
+結論を述べる。
+
+% \bibliography{ling2}
+
+\end{document}

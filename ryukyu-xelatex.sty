@@ -1,0 +1,118 @@
+% ============================================================
+% ryukyu-xelatex.sty
+% 琉球諸語研究 論文用スタイルファイル（XeLaTeX版）
+% 使用法: \usepackage{ryukyu-xelatex}
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ryukyu-xelatex}[2025/01/29 Ryukyuan Linguistics Style for XeLaTeX]
+
+% --- hyperrefのオプションを事前設定 ---
+\PassOptionsToPackage{unicode=true,bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}{hyperref}
+
+% --- フォント（XeLaTeX 日本語）---
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+\setmainfont{Times New Roman}[Ligatures=TeX,Mapping=]
+\setsansfont{Helvetica Neue}
+\setmonofont{Menlo}
+\setCJKmainfont{YuMincho}
+\setCJKsansfont{YuGothic}
+\setCJKmonofont{YuGothic}
+
+% --- スモールキャップス用フォント ---
+\newfontfamily\SmallCapsFont{Libertinus Serif}[Letters=SmallCaps,Ligatures=TeX]
+\renewcommand{\textsc}[1]{{\SmallCapsFont #1}}
+
+% --- グレースケール出力（印刷用）---
+\RequirePackage{xcolor}
+\selectcolormodel{gray}
+
+\RequirePackage{titling}
+
+% --- 図 ---
+\RequirePackage{graphicx}
+\graphicspath{{./}{figs/}{images/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% --- 体裁・数式・言語学 ---
+\RequirePackage[font=footnotesize]{caption}
+\captionsetup[figure]{width=.85\linewidth, margin={.075\linewidth,.075\linewidth}}
+\RequirePackage{tipa}
+\RequirePackage{wrapfig}
+\RequirePackage{amsmath}
+
+% --- 表 ---
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\setlength{\arrayrulewidth}{0.5pt}
+
+% --- 文献 ---
+\RequirePackage[round,sort&compress]{natbib}
+\RequirePackage{newunicodechar}
+\newunicodechar{—}{-}
+\newunicodechar{–}{-}
+\renewcommand{\textemdash}{-}
+\renewcommand{\textendash}{-}
+
+% --- hyperref ---
+\RequirePackage{hyperref}
+\renewcommand{\UrlFont}{\footnotesize\ttfamily}
+
+% --- 言語学用（例文番号など）---
+\providecommand{\noautomath}{}
+\RequirePackage{gb4e}
+
+% === ページ設定 ===
+\RequirePackage{geometry}
+\geometry{top=25mm,bottom=26.25mm,left=20.312mm,right=20.312mm,includefoot}
+
+% --- 行間：24.5H（約17.35pt）---
+\makeatletter
+\AtBeginDocument{\setlength{\baselineskip}{17.35pt}}
+\makeatother
+
+% --- ページ番号なし ---
+\pagenumbering{gobble}
+
+% === セクション見出し ===
+\RequirePackage{titlesec}
+\renewcommand{\thesection}{\arabic{section}．}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}　}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}　}
+
+\titleformat{\section}{\bfseries\sffamily\fontsize{10.25pt}{17.35pt}\selectfont}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{0.6\baselineskip}{0.25\baselineskip}
+\titleformat{\subsection}{\bfseries\sffamily\fontsize{10.25pt}{17.35pt}\selectfont}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{0.6\baselineskip}{0.25\baselineskip}
+\titleformat{\subsubsection}{\bfseries\sffamily\fontsize{10.25pt}{17.35pt}\selectfont}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0.6\baselineskip}{0.25\baselineskip}
+
+% === 脚注設定 ===
+\RequirePackage[hang,flushmargin]{footmisc}
+\makeatletter
+\renewcommand\footnotesize{\@setfontsize\footnotesize{8.5pt}{12.75pt}}
+\makeatother
+\setlength{\skip\footins}{8mm}
+\renewcommand{\footnoterule}{\kern -1pt \hrule height 0.5pt width 50mm \kern 1.85mm}
+\interfootnotelinepenalty=10000
+
+\makeatletter
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\renewcommand{\@makefnmark}{\hbox{\textsuperscript{\fontsize{5.78pt}{5.78pt}\selectfont\@thefnmark}}}
+\newlength{\fnlabelwidth}\setlength{\fnlabelwidth}{2.2em}
+\renewcommand{\@makefntext}[1]{%
+  \noindent\hangindent=\fnlabelwidth\hangafter=1
+  \hbox to \fnlabelwidth{\hfil\textsuperscript{\fontsize{5pt}{5pt}\selectfont\@thefnmark}\enspace}#1}
+\makeatother
+
+% === タイトル・著者 ===
+\makeatletter
+\def\@maketitle{%
+  \newpage\null\vskip 2em%
+  \begin{center}{\fontsize{15.5pt}{17.35pt}\selectfont \@title \par}\end{center}%
+  \vskip 1.5em%
+  \begin{flushright}\fontsize{12.75pt}{17.35pt}\selectfont\@author\par\end{flushright}%
+  \par\vskip 1.5em}
+\makeatother
+
+\endinput
