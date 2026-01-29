@@ -17,32 +17,6 @@ template_lualatex.tex # LuaLaTeX用テンプレート
 1. `.sty`ファイルを`.tex`ファイルと同じフォルダに置く
 2. テンプレートをコピーして執筆開始
 
-## コンパイル方法
-
-### XeLaTeX（推奨：IPA記号を多用する場合）
-```bash
-xelatex myfile.tex
-bibtex myfile
-xelatex myfile.tex
-xelatex myfile.tex
-```
-
-### pLaTeX
-```bash
-platex myfile.tex
-pbibtex myfile
-platex myfile.tex
-platex myfile.tex
-dvipdfmx myfile.dvi
-```
-
-### LuaLaTeX
-```bash
-lualatex myfile.tex
-bibtex myfile
-lualatex myfile.tex
-lualatex myfile.tex
-```
 
 ## 本文ルール（手動対応）
 
